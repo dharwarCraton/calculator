@@ -6,13 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".CalcActivity">
 
+    <LinearLayout
+        android:id="@+id/buttonPadBackground_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/buttonPadBackground"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sum_layout"></LinearLayout>
+
     <TableLayout
         android:id="@+id/buttonPad_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="20dp"
         android:weightSum="4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/sum_layout"
