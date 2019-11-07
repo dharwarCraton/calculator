@@ -7,33 +7,6 @@
     tools:context=".CalcActivity">
 
     <LinearLayout
-        android:id="@+id/sum_layout"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/sumLayoutHeight"
-        android:background="#AD3CCC"
-        android:orientation="vertical"
-        android:weightSum="2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/sum_textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="90dp"
-            android:layout_marginEnd="15dp"
-            android:layout_weight="1"
-            android:background="#00000000"
-            android:text="45676869707978"
-            android:textAlignment="textEnd"
-            android:textColor="#E7CBF0"
-            android:textSize="36sp" />
-
-    </LinearLayout>
-
-    <LinearLayout
         android:id="@+id/buttonPad_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -238,5 +211,47 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/sum_layout"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/sumLayoutHeight"
+        android:background="#AD3CCC"
+        android:orientation="vertical"
+        android:weightSum="2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/sum_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="90dp"
+            android:layout_marginEnd="15dp"
+            android:layout_weight="1"
+            android:background="#00000000"
+            android:text="45676869707978"
+            android:textAlignment="textEnd"
+            android:textColor="#E7CBF0"
+            android:textSize="36sp" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="210dp"
+            android:layout_marginEnd="15dp"
+            android:src="@drawable/equal"
+            android:contentDescription="TODO" />
+    </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>
