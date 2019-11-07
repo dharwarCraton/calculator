@@ -7,15 +7,26 @@
     tools:context=".CalcActivity">
 
     <TableLayout
+        android:id="@+id/buttonPad_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        android:weightSum="4"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/sum_layout">
+        app:layout_constraintEnd_toEndOf="@id/sum_layout"
+        app:layout_constraintStart_toStartOf="@id/sum_layout"
+        app:layout_constraintTop_toBottomOf="@id/equalTo_layout">
 
         <TableRow
-            android:id="@+id/row_1"
+            android:id="@+id/buttonRow_1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/rowBackground"
+            android:gravity="center"
+            android:weightSum="4">
 
             <Button
                 android:id="@+id/button_"
@@ -58,9 +69,13 @@
         </TableRow>
 
         <TableRow
-            android:id="@+id/row_2"
+            android:id="@+id/buttonRow_2"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/rowBackground"
+            android:gravity="center"
+            android:weightSum="4">
 
             <Button
                 android:id="@+id/button_12"
@@ -103,9 +118,13 @@
         </TableRow>
 
         <TableRow
-            android:id="@+id/row_3"
+            android:id="@+id/buttonRow_3"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/rowBackground"
+            android:gravity="center"
+            android:weightSum="4">
 
             <Button
                 android:id="@+id/button_15"
@@ -148,9 +167,13 @@
         </TableRow>
 
         <TableRow
-            android:id="@+id/row_4"
+            android:id="@+id/buttonRow_4"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/rowBackground"
+            android:gravity="center"
+            android:weightSum="4">
 
             <Button
                 android:id="@+id/button_clear2"
@@ -169,6 +192,7 @@
                 android:layout_height="@dimen/buttonHeight"
                 android:layout_weight="1"
                 android:background="@color/buttonBackground"
+                android:gravity="center"
                 android:text="@string/button_0"
                 android:textColor="#000000"
                 android:textSize="24sp" />
@@ -212,6 +236,7 @@
     </LinearLayout>
 
     <RelativeLayout
+        android:id="@+id/equalTo_layout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="210dp"
