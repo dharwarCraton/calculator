@@ -31,41 +31,42 @@
             android:weightSum="4">
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/button_7"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/buttonHeight"
                 android:layout_weight="1"
                 android:background="@color/buttonBackground"
-                android:text="7"
+                android:text="@string/button_7"
                 android:textColor="#000000"
                 android:textSize="24sp" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/button_8"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/buttonHeight"
                 android:layout_weight="1"
                 android:background="@color/buttonBackground"
-                android:text="8"
+                android:text="@string/button_8"
                 android:textColor="#000000"
                 android:textSize="24sp" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/button_9"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/buttonHeight"
                 android:layout_weight="1"
                 android:background="@color/buttonBackground"
-                android:text="9"
+                android:text="@string/button_9"
                 android:textColor="#000000"
                 android:textSize="24sp" />
 
             <ImageButton
-                android:id="@+id/imageButton"
+                android:id="@+id/button_divide"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/buttonHeight"
                 android:layout_weight="1"
                 android:background="@color/buttonBackground"
+                android:contentDescription="@string/cd_divide"
                 android:src="@drawable/divide" />
         </LinearLayout>
 
@@ -81,41 +82,42 @@
             android:weightSum="4">
 
             <Button
-                android:id="@+id/button7"
+                android:id="@+id/button_4"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/buttonHeight"
                 android:layout_weight="1"
                 android:background="@color/buttonBackground"
-                android:text="4"
+                android:text="@string/button_4"
                 android:textColor="#000000"
                 android:textSize="24sp" />
 
             <Button
-                android:id="@+id/button6"
+                android:id="@+id/button_5"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/buttonHeight"
                 android:layout_weight="1"
                 android:background="@color/buttonBackground"
-                android:text="5"
+                android:text="@string/button_5"
                 android:textColor="#000000"
                 android:textSize="24sp" />
 
             <Button
-                android:id="@+id/button5"
+                android:id="@+id/button_6"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/buttonHeight"
                 android:layout_weight="1"
                 android:background="@color/buttonBackground"
-                android:text="6"
+                android:text="@string/button_6"
                 android:textColor="#000000"
                 android:textSize="24sp" />
 
             <ImageButton
-                android:id="@+id/imageButton2"
+                android:id="@+id/button_add"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/buttonHeight"
                 android:layout_weight="1"
                 android:background="@color/buttonBackground"
+                android:contentDescription="@string/cd_add"
                 android:src="@drawable/add" />
         </LinearLayout>
 
@@ -131,41 +133,42 @@
             android:weightSum="4">
 
             <Button
-                android:id="@+id/button10"
+                android:id="@+id/button_1"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/buttonHeight"
                 android:layout_weight="1"
                 android:background="@color/buttonBackground"
-                android:text="1"
+                android:text="@string/button_1"
                 android:textColor="#000000"
                 android:textSize="24sp" />
 
             <Button
-                android:id="@+id/button9"
+                android:id="@+id/button_2"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/buttonHeight"
                 android:layout_weight="1"
                 android:background="@color/buttonBackground"
-                android:text="2"
+                android:text="@string/button_2"
                 android:textColor="#000000"
                 android:textSize="24sp" />
 
             <Button
-                android:id="@+id/button8"
+                android:id="@+id/button_3"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/buttonHeight"
                 android:layout_weight="1"
                 android:background="@color/buttonBackground"
-                android:text="3"
+                android:text="@string/button_3"
                 android:textColor="#000000"
                 android:textSize="24sp" />
 
             <ImageButton
-                android:id="@+id/imageButton3"
+                android:id="@+id/button_multiply"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/buttonHeight"
                 android:layout_weight="1"
                 android:background="@color/buttonBackground"
+                android:contentDescription="@string/cd_multiply"
                 android:src="@drawable/multiply" />
         </LinearLayout>
 
@@ -181,32 +184,33 @@
             android:weightSum="4">
 
             <Button
-                android:id="@+id/button13"
+                android:id="@+id/button_clear"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/buttonHeight"
                 android:layout_weight="2"
                 android:background="#A027C2"
-                android:text="Clear"
+                android:text="@string/button_clear"
                 android:textAlignment="center"
                 android:textColor="#FFE7CBF0"
                 android:textSize="30sp" />
 
             <Button
-                android:id="@+id/button24"
+                android:id="@+id/button_0"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/buttonHeight"
                 android:layout_weight="1"
                 android:background="@color/buttonBackground"
-                android:text="0"
+                android:text="@string/button_0"
                 android:textColor="#000000"
                 android:textSize="24sp" />
 
             <ImageButton
-                android:id="@+id/imageButton4"
+                android:id="@+id/button_subtract"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/buttonHeight"
                 android:layout_weight="1"
                 android:background="@color/buttonBackground"
+                android:contentDescription="@string/cd_subtract"
                 android:src="@drawable/subtract" />
         </LinearLayout>
 
@@ -226,7 +230,7 @@
         <TextView
             android:id="@+id/sum_textView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginStart="15dp"
             android:layout_marginTop="90dp"
             android:layout_marginEnd="15dp"
@@ -244,14 +248,14 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/imageView5"
+            android:id="@+id/button_equalTo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="210dp"
             android:layout_marginEnd="15dp"
-            android:src="@drawable/equal"
-            android:contentDescription="TODO" />
+            android:contentDescription="@string/cd_equalTo"
+            android:src="@drawable/equal" />
     </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>
