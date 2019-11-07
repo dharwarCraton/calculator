@@ -234,7 +234,7 @@
                 android:layout_height="@dimen/buttonHeight"
                 android:layout_weight="1"
                 android:background="@color/buttonBackground"
-                android:src="@drawable/multiply" />
+                android:src="@drawable/subtract" />
         </LinearLayout>
 
     </LinearLayout>
