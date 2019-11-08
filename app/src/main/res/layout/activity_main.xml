@@ -44,7 +44,7 @@
                 android:layout_weight="1"
                 android:background="@color/buttonBackground"
                 android:text="@string/button_7"
-                android:textColor="#000000"
+                android:textColor="@color/buttonText"
                 android:textSize="24sp" />
 
             <Button
@@ -54,7 +54,7 @@
                 android:layout_weight="1"
                 android:background="@color/buttonBackground"
                 android:text="@string/button_8"
-                android:textColor="#000000"
+                android:textColor="@color/buttonText"
                 android:textSize="24sp" />
 
             <Button
@@ -64,7 +64,7 @@
                 android:layout_weight="1"
                 android:background="@color/buttonBackground"
                 android:text="@string/button_9"
-                android:textColor="#000000"
+                android:textColor="@color/buttonText"
                 android:textSize="24sp" />
 
             <ImageButton
@@ -74,7 +74,8 @@
                 android:layout_weight="1"
                 android:background="@color/buttonBackground"
                 android:contentDescription="@string/cd_divide"
-                android:src="@drawable/divide" />
+                android:src="@drawable/divide"
+                android:tint="@color/operatorColours"/>
         </TableRow>
 
         <TableRow
@@ -93,7 +94,7 @@
                 android:layout_weight="1"
                 android:background="@color/buttonBackground"
                 android:text="@string/button_4"
-                android:textColor="#000000"
+                android:textColor="@color/buttonText"
                 android:textSize="24sp" />
 
             <Button
@@ -103,7 +104,7 @@
                 android:layout_weight="1"
                 android:background="@color/buttonBackground"
                 android:text="@string/button_5"
-                android:textColor="#000000"
+                android:textColor="@color/buttonText"
                 android:textSize="24sp" />
 
             <Button
@@ -113,7 +114,7 @@
                 android:layout_weight="1"
                 android:background="@color/buttonBackground"
                 android:text="@string/button_6"
-                android:textColor="#000000"
+                android:textColor="@color/buttonText"
                 android:textSize="24sp" />
 
             <ImageButton
@@ -123,7 +124,8 @@
                 android:layout_weight="1"
                 android:background="@color/buttonBackground"
                 android:contentDescription="@string/cd_add"
-                android:src="@drawable/add" />
+                android:src="@drawable/add"
+                android:tint="@color/operatorColours"/>
         </TableRow>
 
         <TableRow
@@ -142,7 +144,7 @@
                 android:layout_weight="1"
                 android:background="@color/buttonBackground"
                 android:text="@string/button_1"
-                android:textColor="#000000"
+                android:textColor="@color/buttonText"
                 android:textSize="24sp" />
 
             <Button
@@ -152,7 +154,7 @@
                 android:layout_weight="1"
                 android:background="@color/buttonBackground"
                 android:text="@string/button_2"
-                android:textColor="#000000"
+                android:textColor="@color/buttonText"
                 android:textSize="24sp" />
 
             <Button
@@ -162,7 +164,7 @@
                 android:layout_weight="1"
                 android:background="@color/buttonBackground"
                 android:text="@string/button_3"
-                android:textColor="#000000"
+                android:textColor="@color/buttonText"
                 android:textSize="24sp" />
 
             <ImageButton
@@ -172,7 +174,8 @@
                 android:layout_weight="1"
                 android:background="@color/buttonBackground"
                 android:contentDescription="@string/cd_multiply"
-                android:src="@drawable/multiply" />
+                android:src="@drawable/multiply"
+                android:tint="@color/operatorColours"/>
         </TableRow>
 
         <TableRow
@@ -189,10 +192,10 @@
                 android:layout_width="0dp"
                 android:layout_height="@dimen/buttonHeight"
                 android:layout_weight="2"
-                android:background="#A027C2"
+                android:background="@color/clearButton"
                 android:text="@string/button_clear"
                 android:textAlignment="center"
-                android:textColor="#FFE7CBF0"
+                android:textColor="#E7CBF0"
                 android:textSize="30sp" />
 
             <Button
@@ -203,7 +206,7 @@
                 android:background="@color/buttonBackground"
                 android:gravity="center"
                 android:text="@string/button_0"
-                android:textColor="#000000"
+                android:textColor="@color/buttonText"
                 android:textSize="24sp" />
 
             <ImageButton
@@ -213,7 +216,8 @@
                 android:layout_weight="1"
                 android:background="@color/buttonBackground"
                 android:contentDescription="@string/cd_subtract"
-                android:src="@drawable/subtract" />
+                android:src="@drawable/subtract"
+                android:tint="@color/operatorColours"/>
         </TableRow>
     </TableLayout>
 
@@ -221,7 +225,7 @@
         android:id="@+id/sum_layout"
         android:layout_width="0dp"
         android:layout_height="@dimen/sumLayoutHeight"
-        android:background="#AD3CCC"
+        android:background="@color/sumLayout"
         android:orientation="vertical"
         android:weightSum="2"
         app:layout_constraintEnd_toEndOf="parent"
