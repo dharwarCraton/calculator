@@ -1,8 +1,8 @@
 package com.farah.coolcalculator;
 
 import android.app.Activity;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -10,7 +10,11 @@ import android.widget.TextView;
 
 import com.farah.coolcalculator.utility.Operation;
 
-import java.sql.Array;
+import static com.farah.coolcalculator.utility.Operation.ADD;
+import static com.farah.coolcalculator.utility.Operation.DIVIDE;
+import static com.farah.coolcalculator.utility.Operation.EQUAL_TO;
+import static com.farah.coolcalculator.utility.Operation.MULTIPLY;
+import static com.farah.coolcalculator.utility.Operation.SUBTRACT;
 
 public class CalcActivity extends Activity {
 
@@ -18,11 +22,11 @@ public class CalcActivity extends Activity {
     TextView results_textView;
 
 
-    String value = "";
-    String leftValueStr;
-    String rightValueStr;
-    String results = String.valueOf(0);
-    int operator;
+    String numberEntered = "";
+    String rightValueStr = "";
+    String leftValueStr = "";
+    int result = 0;
+    @Operation.Operator int currentOperator;
 
     public enum OP {
         ADD,
@@ -102,29 +106,23 @@ public class CalcActivity extends Activity {
                 public void onClick(View v) {
                     switch(buttonId) {
                         case 0:
-                            operator = Operation.EQUAL_TO;
-                            assignLeftValue();
-                            results_textView.setText("=");
-                            break;
+                            currentOperator = EQUAL_TO;
+                            performCalculation(EQUAL_TO);
                         case 1:
-                            operator = Operation.DIVIDE;
-                            assignLeftValue();
-                            results_textView.setText("/");
+                            currentOperator = DIVIDE;
+                            performCalculation(currentOperator);
                             break;
                         case 2:
-                            operator = Operation.ADD;
-                            assignLeftValue();
-                            results_textView.setText("+");
+                            currentOperator = ADD;
+                            performCalculation(currentOperator);
                             break;
                         case 3:
-                            operator = Operation.MULTIPLY;
-                            assignLeftValue();
-                            results_textView.setText("x");
+                            currentOperator = MULTIPLY;
+                            performCalculation(currentOperator);
                             break;
                         case 4:
-                            operator = Operation.SUBTRACT;
-                            assignLeftValue();
                             results_textView.setText("-");
+                            performCalculation(SUBTRACT);
                             break;
                     }
                 }
@@ -133,18 +131,66 @@ public class CalcActivity extends Activity {
     }
 
     private void valueEntered(int buttonPressed) {
-        value += String.valueOf(buttonPressed);
-        results_textView.setText(value);
+        numberEntered += String.valueOf(buttonPressed);
+        results_textView.setText(numberEntered);
     }
 
-    private void assignLeftValue() {
-        if (value != null && (!value.isEmpty())) {
-            leftValueStr = value;
-            value = "";
+    private void assignRightValue() {
+        if (!numberEntered.isEmpty()) {
+            rightValueStr = numberEntered;
+            numberEntered = "";
         }
     }
 
-    private void performCalculation(Operation operation) {
+    private void assignLeftValue() {
+        if (!numberEntered.isEmpty()) {
+            leftValueStr = numberEntered;
+            numberEntered = "";
+        }
+    }
 
+    private void performCalculation(@Operation.Operator int incomingOperator) {
+        assignRightValue();
+
+        if (!numberEntered.isEmpty()) {
+
+            int leftValueInt = Integer.parseInt(leftValueStr);
+            int rightValueInt = Integer.parseInt(rightValueStr);
+
+            switch (currentOperator) {
+                case EQUAL_TO:
+                    Log.i(CalcActivity.class.getSimpleName(), String.format("Equals to: %d", result));
+                    results_textView.setText(result);
+                    break;
+                case DIVIDE:
+                    results_textView.setText("/");
+                    result = leftValueInt / rightValueInt;
+                    break;
+                case ADD:
+                    results_textView.setText("+");
+                    result = leftValueInt + rightValueInt;
+                    break;
+                case MULTIPLY:
+                    results_textView.setText("x");
+                    result = leftValueInt * rightValueInt;
+                    break;
+                case SUBTRACT:
+
+                    if (leftValueInt >= rightValueInt) {
+                        result = leftValueInt - rightValueInt;
+                    } else {
+                        result = rightValueInt - leftValueInt;
+                    }
+                    break;
+            }
+
+            leftValueStr = String.valueOf(result);
+            results_textView.setText(String.valueOf(result));
+
+        } else {
+            assignLeftValue();
+        }
+
+        currentOperator = incomingOperator;
     }
 }
