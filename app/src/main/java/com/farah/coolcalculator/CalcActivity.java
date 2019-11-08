@@ -8,12 +8,29 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.farah.coolcalculator.utility.Operation;
+
 import java.sql.Array;
 
 public class CalcActivity extends Activity {
 
-    String value = "";
+
     TextView results_textView;
+
+
+    String value = "";
+    String leftValueStr;
+    String rightValueStr;
+    String results = String.valueOf(0);
+    int operator;
+
+    public enum OP {
+        ADD,
+        SUBTRACT,
+        MULTIPLY,
+        DIVIDE,
+        EQUAL
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,27 +58,28 @@ public class CalcActivity extends Activity {
         results_textView = findViewById(R.id.results_textView);
         results_textView.setText(R.string.initial_resultsText);
 
-        Button[] calculatorButtonsWithListeners = new Button[11];
-        calculatorButtonsWithListeners[0] = button_0;
-        calculatorButtonsWithListeners[1] = button_1;
-        calculatorButtonsWithListeners[2] = button_2;
-        calculatorButtonsWithListeners[3] = button_3;
-        calculatorButtonsWithListeners[4] = button_4;
-        calculatorButtonsWithListeners[5] = button_5;
-        calculatorButtonsWithListeners[6] = button_6;
-        calculatorButtonsWithListeners[7] = button_7;
-        calculatorButtonsWithListeners[8] = button_8;
-        calculatorButtonsWithListeners[9] = button_9;
-        calculatorButtonsWithListeners[10] = button_clear;
+        Button[] calculatorButtons = new Button[11];
+        calculatorButtons[0] = button_0;
+        calculatorButtons[1] = button_1;
+        calculatorButtons[2] = button_2;
+        calculatorButtons[3] = button_3;
+        calculatorButtons[4] = button_4;
+        calculatorButtons[5] = button_5;
+        calculatorButtons[6] = button_6;
+        calculatorButtons[7] = button_7;
+        calculatorButtons[8] = button_8;
+        calculatorButtons[9] = button_9;
+        calculatorButtons[10] = button_clear;
 
-        ImageButton[] calculatorImageButtonsWithListeners = new ImageButton[5];
-        calculatorImageButtonsWithListeners[0] = button_EqualTo;
-        calculatorImageButtonsWithListeners[1] = button_divide;
-        calculatorImageButtonsWithListeners[2] = button_add;
-        calculatorImageButtonsWithListeners[3] = button_multiply;
-        calculatorImageButtonsWithListeners[4] = button_subtract;
+        ImageButton[] calculatorImageButtons = new ImageButton[5];
+        calculatorImageButtons[0] = button_EqualTo;
+        calculatorImageButtons[1] = button_divide;
+        calculatorImageButtons[2] = button_add;
+        calculatorImageButtons[3] = button_multiply;
+        calculatorImageButtons[4] = button_subtract;
 
-        setListenerOnButtons(calculatorButtonsWithListeners);
+        setListenerOnButtons(calculatorButtons);
+        setListenerOnImageButtons(calculatorImageButtons);
     }
 
     private void setListenerOnButtons(final Button[] buttons) {
@@ -77,11 +95,38 @@ public class CalcActivity extends Activity {
     }
 
     private void setListenerOnImageButtons(ImageButton[] imageButtons) {
-        for (ImageButton imageButton : imageButtons) {
-            imageButton.setOnClickListener(new View.OnClickListener() {
+        for (int i = 0; i < imageButtons.length; i++) {
+            final int buttonId = i;
+            imageButtons[i].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // do something
+                    switch(buttonId) {
+                        case 0:
+                            operator = Operation.EQUAL_TO;
+                            assignLeftValue();
+                            results_textView.setText("=");
+                            break;
+                        case 1:
+                            operator = Operation.DIVIDE;
+                            assignLeftValue();
+                            results_textView.setText("/");
+                            break;
+                        case 2:
+                            operator = Operation.ADD;
+                            assignLeftValue();
+                            results_textView.setText("+");
+                            break;
+                        case 3:
+                            operator = Operation.MULTIPLY;
+                            assignLeftValue();
+                            results_textView.setText("x");
+                            break;
+                        case 4:
+                            operator = Operation.SUBTRACT;
+                            assignLeftValue();
+                            results_textView.setText("-");
+                            break;
+                    }
                 }
             });
         }
@@ -90,5 +135,16 @@ public class CalcActivity extends Activity {
     private void valueEntered(int buttonPressed) {
         value += String.valueOf(buttonPressed);
         results_textView.setText(value);
+    }
+
+    private void assignLeftValue() {
+        if (value != null && (!value.isEmpty())) {
+            leftValueStr = value;
+            value = "";
+        }
+    }
+
+    private void performCalculation(Operation operation) {
+
     }
 }
