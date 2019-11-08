@@ -7,220 +7,225 @@
     tools:context=".CalcActivity">
 
     <LinearLayout
+        android:id="@+id/buttonPadBackground_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/buttonPadBackground"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sum_layout"></LinearLayout>
+
+    <TableLayout
         android:id="@+id/buttonPad_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="#ffffff"
-        android:orientation="vertical"
-        android:paddingTop="70dp"
-        android:paddingBottom="30dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="20dp"
         android:weightSum="4"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/sum_layout"
-        tools:layout_editor_absoluteX="8dp">
+        app:layout_constraintEnd_toEndOf="@id/sum_layout"
+        app:layout_constraintStart_toStartOf="@id/sum_layout"
+        app:layout_constraintTop_toBottomOf="@id/equalTo_layout">
 
-        <LinearLayout
-            android:id="@+id/buttonRow_1_layout"
+        <TableRow
+            android:id="@+id/buttonRow_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
             android:layout_weight="1"
+            android:background="@color/rowBackground"
             android:gravity="center"
-            android:orientation="horizontal"
             android:weightSum="4">
 
             <Button
-                android:id="@+id/button_7"
+                android:id="@+id/button_"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/buttonHeight"
                 android:layout_weight="1"
                 android:background="@color/buttonBackground"
                 android:text="@string/button_7"
-                android:textColor="#000000"
+                android:textColor="@color/buttonText"
                 android:textSize="24sp" />
 
             <Button
-                android:id="@+id/button_8"
+                android:id="@+id/button_10"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/buttonHeight"
                 android:layout_weight="1"
                 android:background="@color/buttonBackground"
                 android:text="@string/button_8"
-                android:textColor="#000000"
+                android:textColor="@color/buttonText"
                 android:textSize="24sp" />
 
             <Button
-                android:id="@+id/button_9"
+                android:id="@+id/button_11"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/buttonHeight"
                 android:layout_weight="1"
                 android:background="@color/buttonBackground"
                 android:text="@string/button_9"
-                android:textColor="#000000"
+                android:textColor="@color/buttonText"
                 android:textSize="24sp" />
 
             <ImageButton
-                android:id="@+id/button_divide"
+                android:id="@+id/button_divide2"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/buttonHeight"
                 android:layout_weight="1"
                 android:background="@color/buttonBackground"
                 android:contentDescription="@string/cd_divide"
-                android:src="@drawable/divide" />
-        </LinearLayout>
+                android:src="@drawable/divide"
+                android:tint="@color/operatorColours"/>
+        </TableRow>
 
-        <LinearLayout
-            android:id="@+id/buttonRow_2_layout"
+        <TableRow
+            android:id="@+id/buttonRow_2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@color/rowBackground"
             android:gravity="center"
-            android:orientation="horizontal"
             android:weightSum="4">
 
             <Button
-                android:id="@+id/button_4"
+                android:id="@+id/button_12"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/buttonHeight"
                 android:layout_weight="1"
                 android:background="@color/buttonBackground"
                 android:text="@string/button_4"
-                android:textColor="#000000"
+                android:textColor="@color/buttonText"
                 android:textSize="24sp" />
 
             <Button
-                android:id="@+id/button_5"
+                android:id="@+id/button_13"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/buttonHeight"
                 android:layout_weight="1"
                 android:background="@color/buttonBackground"
                 android:text="@string/button_5"
-                android:textColor="#000000"
+                android:textColor="@color/buttonText"
                 android:textSize="24sp" />
 
             <Button
-                android:id="@+id/button_6"
+                android:id="@+id/button_14"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/buttonHeight"
                 android:layout_weight="1"
                 android:background="@color/buttonBackground"
                 android:text="@string/button_6"
-                android:textColor="#000000"
+                android:textColor="@color/buttonText"
                 android:textSize="24sp" />
 
             <ImageButton
-                android:id="@+id/button_add"
+                android:id="@+id/button_add2"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/buttonHeight"
                 android:layout_weight="1"
                 android:background="@color/buttonBackground"
                 android:contentDescription="@string/cd_add"
-                android:src="@drawable/add" />
-        </LinearLayout>
+                android:src="@drawable/add"
+                android:tint="@color/operatorColours"/>
+        </TableRow>
 
-        <LinearLayout
-            android:id="@+id/buttonRow_3_layout"
+        <TableRow
+            android:id="@+id/buttonRow_3"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@color/rowBackground"
             android:gravity="center"
-            android:orientation="horizontal"
             android:weightSum="4">
 
             <Button
-                android:id="@+id/button_1"
+                android:id="@+id/button_15"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/buttonHeight"
                 android:layout_weight="1"
                 android:background="@color/buttonBackground"
                 android:text="@string/button_1"
-                android:textColor="#000000"
+                android:textColor="@color/buttonText"
                 android:textSize="24sp" />
 
             <Button
-                android:id="@+id/button_2"
+                android:id="@+id/button_16"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/buttonHeight"
                 android:layout_weight="1"
                 android:background="@color/buttonBackground"
                 android:text="@string/button_2"
-                android:textColor="#000000"
+                android:textColor="@color/buttonText"
                 android:textSize="24sp" />
 
             <Button
-                android:id="@+id/button_3"
+                android:id="@+id/button_17"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/buttonHeight"
                 android:layout_weight="1"
                 android:background="@color/buttonBackground"
                 android:text="@string/button_3"
-                android:textColor="#000000"
+                android:textColor="@color/buttonText"
                 android:textSize="24sp" />
 
             <ImageButton
-                android:id="@+id/button_multiply"
+                android:id="@+id/button_multiply2"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/buttonHeight"
                 android:layout_weight="1"
                 android:background="@color/buttonBackground"
                 android:contentDescription="@string/cd_multiply"
-                android:src="@drawable/multiply" />
-        </LinearLayout>
+                android:src="@drawable/multiply"
+                android:tint="@color/operatorColours"/>
+        </TableRow>
 
-        <LinearLayout
-            android:id="@+id/buttonRow_4_layout"
+        <TableRow
+            android:id="@+id/buttonRow_4"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@color/rowBackground"
             android:gravity="center"
-            android:orientation="horizontal"
             android:weightSum="4">
 
             <Button
-                android:id="@+id/button_clear"
+                android:id="@+id/button_clear2"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/buttonHeight"
                 android:layout_weight="2"
-                android:background="#A027C2"
+                android:background="@color/clearButton"
                 android:text="@string/button_clear"
                 android:textAlignment="center"
-                android:textColor="#FFE7CBF0"
+                android:textColor="#E7CBF0"
                 android:textSize="30sp" />
 
             <Button
-                android:id="@+id/button_0"
+                android:id="@+id/button_18"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/buttonHeight"
                 android:layout_weight="1"
                 android:background="@color/buttonBackground"
+                android:gravity="center"
                 android:text="@string/button_0"
-                android:textColor="#000000"
+                android:textColor="@color/buttonText"
                 android:textSize="24sp" />
 
             <ImageButton
-                android:id="@+id/button_subtract"
+                android:id="@+id/button_subtract2"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/buttonHeight"
                 android:layout_weight="1"
                 android:background="@color/buttonBackground"
                 android:contentDescription="@string/cd_subtract"
-                android:src="@drawable/subtract" />
-        </LinearLayout>
-
-    </LinearLayout>
+                android:src="@drawable/subtract"
+                android:tint="@color/operatorColours"/>
+        </TableRow>
+    </TableLayout>
 
     <LinearLayout
         android:id="@+id/sum_layout"
         android:layout_width="0dp"
         android:layout_height="@dimen/sumLayoutHeight"
-        android:background="#AD3CCC"
+        android:background="@color/sumLayout"
         android:orientation="vertical"
         android:weightSum="2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -244,16 +249,20 @@
     </LinearLayout>
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:id="@+id/equalTo_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="210dp"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintEnd_toEndOf="@id/sum_layout"
+        app:layout_constraintStart_toStartOf="@id/sum_layout"
+        app:layout_constraintTop_toTopOf="@id/sum_layout">
 
         <ImageView
             android:id="@+id/button_equalTo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="210dp"
-            android:layout_marginEnd="15dp"
             android:contentDescription="@string/cd_equalTo"
             android:src="@drawable/equal" />
     </RelativeLayout>

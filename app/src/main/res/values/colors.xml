@@ -2,6 +2,12 @@
 <resources>
     <color name="colorPrimary">#636361</color>
     <color name="colorPrimaryDark">#4D4D4B</color>
-    <color name="colorAccent">#00BCD4</color>
+    <color name="colorAccent">#D48D00</color>
     <color name="buttonBackground">#ffffff</color>
+    <color name="rowBackground">#ffffff</color>
+    <color name="buttonPadBackground">#ffffff</color>
+    <color name="buttonText">#54000000</color>
+    <color name="operatorColours">#673AB7</color>
+    <color name="sumLayout">#BFAD3CCC</color>
+    <color name="clearButton">#BFAD3CCC</color>
 </resources>
