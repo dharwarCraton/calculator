@@ -16,4 +16,5 @@
     <string name="cd_subtract">subtract</string>
     <string name="cd_divide">divide</string>
     <string name="cd_equalTo">Equal To</string>
+    <string name="initial_resultsText">Watcha wanna calculate?</string>
 </resources>
