@@ -17,4 +17,5 @@
     <string name="cd_divide">divide</string>
     <string name="cd_equalTo">Equal To</string>
     <string name="initial_resultsText">Watcha wanna calculate?</string>
+    <string name="no_lhs_rhs">Hey, you gotta enter a number!</string>
 </resources>

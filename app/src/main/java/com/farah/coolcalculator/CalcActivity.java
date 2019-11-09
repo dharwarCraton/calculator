@@ -23,9 +23,9 @@ public class CalcActivity extends Activity {
 
 
     String numberEntered = "";
-    String rightValueStr = "";
-    String leftValueStr = "";
-    int result = 0;
+    String lhs = "";
+    String rhs = "";
+    String result = String.valueOf(0);
     @Operation.Operator int currentOperator;
 
     public enum OP {
@@ -84,6 +84,16 @@ public class CalcActivity extends Activity {
 
         setListenerOnButtons(calculatorButtons);
         setListenerOnImageButtons(calculatorImageButtons);
+
+        button_clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                lhs = "";
+                rhs = "";
+                numberEntered = "";
+                results_textView.setText(String.valueOf(0));
+            }
+        });
     }
 
     private void setListenerOnButtons(final Button[] buttons) {
@@ -107,22 +117,22 @@ public class CalcActivity extends Activity {
                     switch(buttonId) {
                         case 0:
                             currentOperator = EQUAL_TO;
-                            performCalculation(EQUAL_TO);
+                            processOperation(currentOperator);
                         case 1:
                             currentOperator = DIVIDE;
-                            performCalculation(currentOperator);
+                            processOperation(currentOperator);
                             break;
                         case 2:
                             currentOperator = ADD;
-                            performCalculation(currentOperator);
+                            processOperation(currentOperator);
                             break;
                         case 3:
                             currentOperator = MULTIPLY;
-                            performCalculation(currentOperator);
+                            processOperation(currentOperator);
                             break;
                         case 4:
                             results_textView.setText("-");
-                            performCalculation(SUBTRACT);
+                            processOperation(currentOperator);
                             break;
                     }
                 }
@@ -135,62 +145,171 @@ public class CalcActivity extends Activity {
         results_textView.setText(numberEntered);
     }
 
-    private void assignRightValue() {
-        if (!numberEntered.isEmpty()) {
-            rightValueStr = numberEntered;
+    /*
+    Mike notes
+
+    Farah,
+    i did the following
+    1. wrote some notes above your method thinking through stuff for first time
+    2. put a few comments in your method that reference the notes
+    3. wrote a stub processOperationExhaustive that contains all cases of the three variables stubbed and findings
+        - discovered that many rightValueStr is not needed
+        - produced some half code half notes on what might be done
+        - thought that i could very well be missing things that need to happen that you might know...
+
+    Hope this helps
+    Love,
+    Mike
+
+
+    * @Operation.Operator int is a fancy type, i've never seen this before
+    * this one seems easier to follow
+    * i was looking at it, does it work completely? didn't run
+    * ?
+    * what can i do if anything... or did you want me to just look?
+    *
+    * ok... 5 min pls ... more than 5 minutes... attempting to figure out...
+    *
+    * when operator is pressed here are the eight possible states
+    *       1 !entered !lhs !rhs
+    *       2  entered !lhs !rhs
+    *       3 !entered  lhs !rhs
+    *       4  entered  lhs !rhs
+    *       5 !entered !lhs  rhs
+    *       6  entered !lhs  rhs
+    *       7 !entered  lhs  rhs
+    *       8  entered  lhs  rhs
+    *
+    *       STATE 1 or STATE 2 (FIRST time in processOperation)
+    *       it could start with STATE 1 (nothing is entered and someone just presses an operator)
+    *           should it treat nothing entered as zero entered and continue as if STATE 2?
+    *       or STATE 2 (something is entered but nothing else has happened prior)
+    *           when this happens,
+    *           lhs = entered
+    *           entered = ""
+    *       transition to STATE 3
+    *
+    *       STATE 3 (pushing operator button more than once)
+    *       someone has so far typed 123 + and pressed + again to get to STATE 3, what to do
+    *       what if they had pressed + before and then pressed - to get here?
+    *       seems like you stay in STATE 3 until user enters a number, once they do then you are going to STATE 4
+    *
+    *       STATE 4 (pushing operator button after putting subsequent number (normal use))
+    *       someone has so far typed 123 + 456 and now they press another operator
+    *       time to do this?
+    *       rhs = entered;
+    *       entered = ""
+    *       solution = lhs @ rhs;
+    *       entered = solution
+    *       lhs = ""
+    *       rhs = ""
+    *       now we're back in STATE 2
+    *
+    *
+    *
+
+     */
+
+    void processOperation(@Operation.Operator int operator) {
+        int resultInt = 0;
+        @Operation.Operator int incomingOperator = operator;
+
+        // check if first-time number entered is not empty and assign it to lhs
+        // empty out numberEntered
+        if (!numberEntered.isEmpty() && (lhs.isEmpty())) { // IF STATE 2
+            // GOTO STATE 3
+            lhs = numberEntered;
             numberEntered = "";
         }
-    }
 
-    private void assignLeftValue() {
-        if (!numberEntered.isEmpty()) {
-            leftValueStr = numberEntered;
-            numberEntered = "";
-        }
-    }
-
-    private void performCalculation(@Operation.Operator int incomingOperator) {
-        assignRightValue();
-
-        if (!numberEntered.isEmpty()) {
-
-            int leftValueInt = Integer.parseInt(leftValueStr);
-            int rightValueInt = Integer.parseInt(rightValueStr);
-
+        // only perform the operation when there is both an lhs and an rhs
+        if ((!lhs.isEmpty()) && (!rhs.isEmpty())) { // IF STATE 7 or STATE 8
+            // perform operation
             switch (currentOperator) {
                 case EQUAL_TO:
-                    Log.i(CalcActivity.class.getSimpleName(), String.format("Equals to: %d", result));
+                    // display whatever result is there from last computation
                     results_textView.setText(result);
                     break;
                 case DIVIDE:
-                    results_textView.setText("/");
-                    result = leftValueInt / rightValueInt;
+                    resultInt = Integer.parseInt(lhs) / Integer.parseInt(rhs);
+                    result = String.valueOf(resultInt);
                     break;
                 case ADD:
-                    results_textView.setText("+");
-                    result = leftValueInt + rightValueInt;
+                    resultInt = Integer.parseInt(lhs) + Integer.parseInt(rhs);
+                    result = String.valueOf(resultInt);
                     break;
                 case MULTIPLY:
-                    results_textView.setText("x");
-                    result = leftValueInt * rightValueInt;
+                    resultInt = Integer.parseInt(lhs) * Integer.parseInt(rhs);
+                    result = String.valueOf(resultInt);
                     break;
                 case SUBTRACT:
-
-                    if (leftValueInt >= rightValueInt) {
-                        result = leftValueInt - rightValueInt;
-                    } else {
-                        result = rightValueInt - leftValueInt;
-                    }
+                    resultInt = Integer.parseInt(lhs) - Integer.parseInt(rhs);
+                    result = String.valueOf(resultInt);
                     break;
             }
 
-            leftValueStr = String.valueOf(result);
-            results_textView.setText(String.valueOf(result));
+            results_textView.setText(result);
+            currentOperator = incomingOperator;
 
+            // empty out lhs
+            lhs = "";
+            // move result to lhs
+            lhs = result;
+            // empty out rhs
+            rhs = "";
         } else {
-            assignLeftValue();
+            // check if lhs is not empty - this means that the next number entered (if not empty)
+            // needs to be assigned to rhs
+            // empty out number entered
+            if (!lhs.isEmpty() && (!numberEntered.isEmpty())) { // IF STATE 4
+                rhs = numberEntered;
+                numberEntered = "";
+            }
         }
+    }
 
-        currentOperator = incomingOperator;
+
+    /*
+     *       1 !entered !lhs !rhs
+     *       2  entered !lhs !rhs
+     *       3 !entered  lhs !rhs
+     *       4  entered  lhs !rhs
+     *       5 !entered !lhs  rhs
+     *       6  entered !lhs  rhs
+     *       7 !entered  lhs  rhs
+     *       8  entered  lhs  rhs
+     */
+    void processOperationExhaustive(@Operation.Operator int operator) {
+        if (numberEntered.isEmpty() && lhs.isEmpty() && rhs.isEmpty()) {             // STATE 1
+            // do nothing because they pressed an operator with nothing entered, just ignore
+            // alternatively could treat this as them having entered 0?
+            // can just delete this block and start the next as if?
+        } else if (!numberEntered.isEmpty() && lhs.isEmpty() && rhs.isEmpty()) {     // STATE 2
+            // keep entered as left
+            lhs = numberEntered;
+            // clear entered
+            numberEntered = "";
+            // save operator int to instance
+            // ... but what if they pressed equal?
+            currentOperator = operator;
+        } else if (numberEntered.isEmpty() && !lhs.isEmpty() && rhs.isEmpty()) {     // STATE 3
+            // save operator int to instance (because they decided to change the operator?)
+            // ... but what if they pressed equal?
+            currentOperator = operator;
+        } else if (!numberEntered.isEmpty() && !lhs.isEmpty() && rhs.isEmpty()) {    // STATE 4
+            // do operation @, an expression based on what the operator is (your big case statement),
+            // // effectively:
+            // numberEntered = leftValueStr @ numberEntered
+            // clear left?
+             lhs = "";
+        } else if (numberEntered.isEmpty() && lhs.isEmpty() && !rhs.isEmpty()) {     // STATE 5
+            // delete this block? maybe never needs to be reached because maybe we don't need rightValueStr?
+        } else if (!numberEntered.isEmpty() && lhs.isEmpty() && !rhs.isEmpty()) {    // STATE 6
+            // delete this block? maybe never needs to be reached because maybe we don't need rightValueStr?
+        } else if (numberEntered.isEmpty() && !lhs.isEmpty() && !rhs.isEmpty()) {    // STATE 7
+            // delete this block? maybe never needs to be reached because maybe we don't need rightValueStr?
+        } else if (!numberEntered.isEmpty() && !lhs.isEmpty() && !rhs.isEmpty()) {   // STATE 8
+            // delete this block? maybe never needs to be reached because maybe we don't need rightValueStr?
+        }
     }
 }
