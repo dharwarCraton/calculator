@@ -12,7 +12,6 @@ import com.farah.coolcalculator.utility.Operation;
 
 import static com.farah.coolcalculator.utility.Operation.ADD;
 import static com.farah.coolcalculator.utility.Operation.DIVIDE;
-import static com.farah.coolcalculator.utility.Operation.EQUAL_TO;
 import static com.farah.coolcalculator.utility.Operation.MULTIPLY;
 import static com.farah.coolcalculator.utility.Operation.SUBTRACT;
 
@@ -24,17 +23,9 @@ public class CalcActivity extends Activity {
 
     String numberEntered = "";
     String lhs = "";
-    String rhs = "";
     String result = String.valueOf(0);
     @Operation.Operator int currentOperator;
 
-    public enum OP {
-        ADD,
-        SUBTRACT,
-        MULTIPLY,
-        DIVIDE,
-        EQUAL
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,21 +66,26 @@ public class CalcActivity extends Activity {
         calculatorButtons[9] = button_9;
         calculatorButtons[10] = button_clear;
 
-        ImageButton[] calculatorImageButtons = new ImageButton[5];
-        calculatorImageButtons[0] = button_EqualTo;
-        calculatorImageButtons[1] = button_divide;
-        calculatorImageButtons[2] = button_add;
-        calculatorImageButtons[3] = button_multiply;
-        calculatorImageButtons[4] = button_subtract;
+        ImageButton[] calculatorImageButtons = new ImageButton[4];
+        calculatorImageButtons[0] = button_divide;
+        calculatorImageButtons[1] = button_add;
+        calculatorImageButtons[2] = button_multiply;
+        calculatorImageButtons[3] = button_subtract;
 
         setListenerOnButtons(calculatorButtons);
         setListenerOnImageButtons(calculatorImageButtons);
+
+        button_EqualTo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                results_textView.setText(result);
+            }
+        });
 
         button_clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 lhs = "";
-                rhs = "";
                 numberEntered = "";
                 results_textView.setText(String.valueOf(0));
             }
@@ -116,21 +112,18 @@ public class CalcActivity extends Activity {
                 public void onClick(View v) {
                     switch(buttonId) {
                         case 0:
-                            currentOperator = EQUAL_TO;
-                            processOperation(currentOperator);
-                        case 1:
                             currentOperator = DIVIDE;
                             processOperation(currentOperator);
                             break;
-                        case 2:
+                        case 1:
                             currentOperator = ADD;
                             processOperation(currentOperator);
                             break;
-                        case 3:
+                        case 2:
                             currentOperator = MULTIPLY;
                             processOperation(currentOperator);
                             break;
-                        case 4:
+                        case 3:
                             results_textView.setText("-");
                             processOperation(currentOperator);
                             break;
@@ -223,27 +216,29 @@ public class CalcActivity extends Activity {
         }
 
         // only perform the operation when there is both an lhs and an rhs
-        if ((!lhs.isEmpty()) && (!rhs.isEmpty())) { // IF STATE 7 or STATE 8
+        if ((!lhs.isEmpty()) && (!numberEntered.isEmpty())) { // IF STATE 7 or STATE 8
             // perform operation
             switch (currentOperator) {
-                case EQUAL_TO:
-                    // display whatever result is there from last computation
-                    results_textView.setText(result);
-                    break;
                 case DIVIDE:
-                    resultInt = Integer.parseInt(lhs) / Integer.parseInt(rhs);
+                    resultInt = Integer.parseInt(lhs) / Integer.parseInt(numberEntered);
                     result = String.valueOf(resultInt);
                     break;
                 case ADD:
-                    resultInt = Integer.parseInt(lhs) + Integer.parseInt(rhs);
+                    resultInt = Integer.parseInt(lhs) + Integer.parseInt(numberEntered);
                     result = String.valueOf(resultInt);
                     break;
                 case MULTIPLY:
-                    resultInt = Integer.parseInt(lhs) * Integer.parseInt(rhs);
+                    resultInt = Integer.parseInt(lhs) * Integer.parseInt(numberEntered);
                     result = String.valueOf(resultInt);
                     break;
                 case SUBTRACT:
-                    resultInt = Integer.parseInt(lhs) - Integer.parseInt(rhs);
+                    int lhsInt = Integer.parseInt(lhs);
+                    int rhsInt = Integer.parseInt(numberEntered);
+                    if (lhsInt >= rhsInt) {
+                        resultInt = lhsInt - rhsInt;
+                    } else {
+                        resultInt = rhsInt - lhsInt;
+                    }
                     result = String.valueOf(resultInt);
                     break;
             }
@@ -256,14 +251,11 @@ public class CalcActivity extends Activity {
             // move result to lhs
             lhs = result;
             // empty out rhs
-            rhs = "";
+            numberEntered = "";
         } else {
-            // check if lhs is not empty - this means that the next number entered (if not empty)
-            // needs to be assigned to rhs
-            // empty out number entered
-            if (!lhs.isEmpty() && (!numberEntered.isEmpty())) { // IF STATE 4
-                rhs = numberEntered;
-                numberEntered = "";
+            // if they pressed equal without an rhs
+            if ((!lhs.isEmpty()) && incomingOperator == 0) { // IF STATE 4
+                results_textView.setText(R.string.no_lhs_rhs);
             }
         }
     }
@@ -280,11 +272,11 @@ public class CalcActivity extends Activity {
      *       8  entered  lhs  rhs
      */
     void processOperationExhaustive(@Operation.Operator int operator) {
-        if (numberEntered.isEmpty() && lhs.isEmpty() && rhs.isEmpty()) {             // STATE 1
+        if (numberEntered.isEmpty() && lhs.isEmpty() && numberEntered.isEmpty()) {             // STATE 1
             // do nothing because they pressed an operator with nothing entered, just ignore
             // alternatively could treat this as them having entered 0?
             // can just delete this block and start the next as if?
-        } else if (!numberEntered.isEmpty() && lhs.isEmpty() && rhs.isEmpty()) {     // STATE 2
+        } else if (!numberEntered.isEmpty() && lhs.isEmpty() && numberEntered.isEmpty()) {     // STATE 2
             // keep entered as left
             lhs = numberEntered;
             // clear entered
@@ -292,23 +284,23 @@ public class CalcActivity extends Activity {
             // save operator int to instance
             // ... but what if they pressed equal?
             currentOperator = operator;
-        } else if (numberEntered.isEmpty() && !lhs.isEmpty() && rhs.isEmpty()) {     // STATE 3
+        } else if (numberEntered.isEmpty() && !lhs.isEmpty() && numberEntered.isEmpty()) {     // STATE 3
             // save operator int to instance (because they decided to change the operator?)
             // ... but what if they pressed equal?
             currentOperator = operator;
-        } else if (!numberEntered.isEmpty() && !lhs.isEmpty() && rhs.isEmpty()) {    // STATE 4
+        } else if (!numberEntered.isEmpty() && !lhs.isEmpty() && numberEntered.isEmpty()) {    // STATE 4
             // do operation @, an expression based on what the operator is (your big case statement),
             // // effectively:
             // numberEntered = leftValueStr @ numberEntered
             // clear left?
              lhs = "";
-        } else if (numberEntered.isEmpty() && lhs.isEmpty() && !rhs.isEmpty()) {     // STATE 5
+        } else if (numberEntered.isEmpty() && lhs.isEmpty() && !numberEntered.isEmpty()) {     // STATE 5
             // delete this block? maybe never needs to be reached because maybe we don't need rightValueStr?
-        } else if (!numberEntered.isEmpty() && lhs.isEmpty() && !rhs.isEmpty()) {    // STATE 6
+        } else if (!numberEntered.isEmpty() && lhs.isEmpty() && !numberEntered.isEmpty()) {    // STATE 6
             // delete this block? maybe never needs to be reached because maybe we don't need rightValueStr?
-        } else if (numberEntered.isEmpty() && !lhs.isEmpty() && !rhs.isEmpty()) {    // STATE 7
+        } else if (numberEntered.isEmpty() && !lhs.isEmpty() && !numberEntered.isEmpty()) {    // STATE 7
             // delete this block? maybe never needs to be reached because maybe we don't need rightValueStr?
-        } else if (!numberEntered.isEmpty() && !lhs.isEmpty() && !rhs.isEmpty()) {   // STATE 8
+        } else if (!numberEntered.isEmpty() && !lhs.isEmpty() && !numberEntered.isEmpty()) {   // STATE 8
             // delete this block? maybe never needs to be reached because maybe we don't need rightValueStr?
         }
     }
